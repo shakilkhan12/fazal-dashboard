@@ -155,7 +155,7 @@ const AddOfficeDrawer = props => {
           <CustomTextField
             fullWidth
             label='Location'
-            value={status}
+            value={'Location'}
             placeholder='Enter Location Here'
             onChange={e => setStatus(e.target.value)}
             slotProps={{

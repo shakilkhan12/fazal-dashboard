@@ -78,7 +78,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CourseTable = ({ officeData }) => {
+const OfficeTable = ({ officeData }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
@@ -293,4 +293,4 @@ const CourseTable = ({ officeData }) => {
   )
 }
 
-export default CourseTable
+export default OfficeTable
