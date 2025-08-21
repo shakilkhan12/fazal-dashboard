@@ -181,9 +181,11 @@ const OfficeTable = ({ officeData }) => {
         header: 'ACTION',
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
-            <Button variant='outlined' color='success' size='small' href='/offices/office-info'>
-              Manage Office
-            </Button>
+            <Link href={'/offices/office-info'}>
+              <Button variant='outlined' color='success' size='small'>
+                Manage Office
+              </Button>
+            </Link>
           </div>
         ),
         enableSorting: false

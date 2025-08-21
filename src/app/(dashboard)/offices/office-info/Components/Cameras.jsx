@@ -143,9 +143,11 @@ const CamerasTable = ({ cameras }) => {
         header: 'ACTION',
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
-            <Button variant='outlined' color='success' size='small' href='/offices/office-info'>
-              Manage
-            </Button>
+            <Link href='/offices/office-info'>
+              <Button variant='outlined' color='success' size='small'>
+                Manage
+              </Button>
+            </Link>
           </div>
         ),
         enableSorting: false

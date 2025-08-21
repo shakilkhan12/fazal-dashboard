@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import MunicipalityOfficePage from '../OfficeInfo/page'
 import { useRouter } from 'next/navigation'
+
+import MunicipalityOfficePage from '../OfficeInfo/page'
 
 const CameraPage = () => {
   const [currentPage, setCurrentPage] = useState(3)
