@@ -6,15 +6,16 @@ import OfficeRight from './Components/OfficeRight'
 import { Button, Typography } from '@mui/material'
 import CamerasTable from './Components/Cameras'
 import cameraData from './data'
+import Functionalities from './Components/Functionalities'
+import Settings from './Components/Settings'
 
 const OfficeInfo = () => {
   // Vars
   const tabContentList = data => ({
     basic: <BasicInfo />,
-    cameras: <CamerasTable cameras={cameraData} />
-    // 'billing-plans': <BillingPlans data={data} />,
-    // notifications: <NotificationsTab />,
-    // connections: <ConnectionsTab />
+    cameras: <CamerasTable cameras={cameraData} />,
+    functionalities: <Functionalities />,
+    settings: <Settings />
   })
   return (
     <>
