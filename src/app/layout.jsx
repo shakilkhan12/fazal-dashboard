@@ -12,11 +12,11 @@ import '@/app/globals.css'
 
 // Generated Icon CSS Imports
 import '@assets/iconify-icons/generated-icons.css'
+import NextProgressbar from '@/components/NextProgressbar'
 
 export const metadata = {
   title: 'AI Control Panel',
-  description:
-    'AI Control Panel'
+  description: 'AI Control Panel'
 }
 
 const RootLayout = async props => {
@@ -31,6 +31,7 @@ const RootLayout = async props => {
       <body className='flex is-full min-bs-full flex-auto flex-col'>
         <InitColorSchemeScript attribute='data' defaultMode={systemMode} />
         {children}
+        <NextProgressbar />
       </body>
     </html>
   )

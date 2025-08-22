@@ -8,6 +8,7 @@ import CamerasTable from './Components/Cameras'
 import cameraData from './data'
 import Functionalities from './Components/Functionalities'
 import Settings from './Components/Settings'
+import Link from 'next/link'
 
 const OfficeInfo = () => {
   // Vars
@@ -21,14 +22,15 @@ const OfficeInfo = () => {
     <>
       <div className='flex items-center justify-between gap-4 mb-5'>
         <Typography className='text-lg font-medium'>Municipality Office - مكتب البلدية</Typography>
-        <Button
-          variant='contained'
-          className='max-sm:is-full text-white'
-          href='/offices'
-          startIcon={<i className='tabler-chevron-left' />}
-        >
-          Back
-        </Button>
+        <Link href='/offices'>
+          <Button
+            variant='contained'
+            className='max-sm:is-full text-white'
+            startIcon={<i className='tabler-chevron-left' />}
+          >
+            Back
+          </Button>
+        </Link>
       </div>
       <Grid container spacing={6}>
         <Grid size={{ xs: 12, lg: 4, md: 5 }}>
