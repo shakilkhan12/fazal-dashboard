@@ -4,12 +4,12 @@ import { MenuItem } from '@mui/material'
 import { useState } from 'react'
 
 const LanguageInput = () => {
-  const [state, setState] = useState('English')
+  const [state, setState] = useState('english')
   return (
     <div className='md:max-w-[190px] w-full'>
-      <CustomTextField select fullWidth value={state} onChange={e => setState(e.target.value)}>
-        <MenuItem value='male'>English</MenuItem>
-        <MenuItem value='female'>Arabic</MenuItem>
+      <CustomTextField placeholder='Hello' select fullWidth value={state} onChange={e => setState(e.target.value)}>
+        <MenuItem value='english'>English</MenuItem>
+        <MenuItem value='arabic'>Arabic</MenuItem>
       </CustomTextField>
     </div>
   )
