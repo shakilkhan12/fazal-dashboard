@@ -23,7 +23,32 @@ const OfficeRight = ({ tabContentList }) => {
       <TabContext value={activeTab}>
         <Grid container spacing={6}>
           <Grid size={{ xs: 12 }}>
-            <CustomTabList onChange={handleChange} variant='scrollable' pill='true'>
+            <CustomTabList
+              onChange={handleChange}
+              variant='scrollable'
+              pill='true'
+              sx={theme => ({
+                '& .MuiTab-root': {
+                  // Light mode default
+                  // color: theme.palette.mode === 'light' ? '#29B171' : 'white',
+                  '& i': {
+                    color: theme.palette.mode === 'light' ? '#29B171' : 'white'
+                  },
+                  '&:hover': {
+                    '& i': {
+                      color: '#29B171'
+                    }
+                  }
+                },
+                '& .Mui-selected': {
+                  // Selected tab
+                  color: 'white !important',
+                  '& i': {
+                    color: 'white !important'
+                  }
+                }
+              })}
+            >
               <Tab icon={<i className='tabler-leaf' />} value='basic' label='Basic Info' iconPosition='start' />
               <Tab
                 icon={<i className='tabler-device-computer-camera' />}

@@ -117,13 +117,25 @@ const AddCameraDrawer = props => {
           <Controller
             name='arabic_name'
             control={control}
-            rules={{ required: true }}
+            rules={{
+              required: true,
+              pattern: {
+                value: /^[\u0600-\u06FF\s]+$/, // Only Arabic characters & spaces
+                message: 'Only Arabic letters are allowed'
+              }
+            }}
             render={({ field }) => (
               <CustomTextField
                 {...field}
+                onChange={e => {
+                  // Filter only Arabic characters while typing
+                  const value = e.target.value.replace(/[^\u0600-\u06FF\s]/g, '')
+                  field.onChange(value)
+                }}
+                inputProps={{ dir: 'rtl', style: { textAlign: 'right' } }}
                 fullWidth
                 label='Camera Arabic Name'
-                placeholder='Enter Camera Arabic Name Here'
+                placeholder='اے بی وای-داخلی راستہ'
                 {...(errors.arabic_name && { error: true, helperText: 'This field is required.' })}
               />
             )}
@@ -147,6 +159,7 @@ const AddCameraDrawer = props => {
             fullWidth
             label='Location'
             value={status}
+            disabled
             placeholder='Enter Location Here'
             onChange={e => setStatus(e.target.value)}
             slotProps={{
@@ -168,7 +181,7 @@ const AddCameraDrawer = props => {
             <span className=' text-[15px]'>Last active</span>
             <span className={`flex w-[10px] h-[10px] rounded-full bg-gray-400`}></span>
             <span className=' text-[15px]'>12 July 2025 at 10:25 PM</span>
-            <i className='tabler-reload text-[15px] '></i>
+            <i className='tabler-reload text-[15px] cursor-pointer'></i>
           </div>
           <div className='flex items-center gap-4'>
             <Button

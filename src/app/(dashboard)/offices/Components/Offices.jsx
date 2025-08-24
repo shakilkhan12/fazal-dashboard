@@ -146,8 +146,8 @@ const OfficeTable = ({ officeData }) => {
           <div className='flex items-center justify-between gap-5'>
             <div>
               <div className='flex items-center gap-1.5'>
-                <CustomAvatar variant='rounded' skin='light' size={26} className='bg-indigo-50'>
-                  <i className='tabler-device-computer-camera text-indigo-500 text-[18px]' />
+                <CustomAvatar variant='rounded' skin='light' size={26} color='secondary'>
+                  <i className='tabler-device-computer-camera text-[18px]' />
                 </CustomAvatar>
                 <Typography fontSize={15}>98</Typography>
               </div>
@@ -155,8 +155,8 @@ const OfficeTable = ({ officeData }) => {
             </div>
             <div>
               <div className='flex items-center gap-1.5'>
-                <CustomAvatar variant='rounded' skin='light' size={26} className='bg-green-50'>
-                  <i className='tabler-device-computer-camera text-green-500 text-lg' />
+                <CustomAvatar variant='rounded' skin='light' size={26} color='primary'>
+                  <i className='tabler-device-computer-camera text-lg' />
                 </CustomAvatar>
                 <Typography fontSize={15}>98</Typography>
               </div>
@@ -164,8 +164,8 @@ const OfficeTable = ({ officeData }) => {
             </div>
             <div>
               <div className='flex items-center gap-1.5'>
-                <CustomAvatar variant='rounded' skin='light' size={26} className='bg-rose-50'>
-                  <i className='tabler-device-computer-camera text-rose-500 text-lg' />
+                <CustomAvatar variant='rounded' skin='light' size={26} color='error'>
+                  <i className='tabler-device-computer-camera text-lg' />
                 </CustomAvatar>
                 <Typography fontSize={15} className=''>
                   98

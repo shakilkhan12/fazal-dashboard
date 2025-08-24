@@ -116,13 +116,25 @@ const AddOfficeDrawer = props => {
           <Controller
             name='arabic_name'
             control={control}
-            rules={{ required: true }}
+            rules={{
+              required: true,
+              pattern: {
+                value: /^[\u0600-\u06FF\s]+$/, // Only Arabic characters & spaces
+                message: 'Only Arabic letters are allowed'
+              }
+            }}
             render={({ field }) => (
               <CustomTextField
                 {...field}
                 fullWidth
+                onChange={e => {
+                  // Filter only Arabic characters while typing
+                  const value = e.target.value.replace(/[^\u0600-\u06FF\s]/g, '')
+                  field.onChange(value)
+                }}
+                inputProps={{ dir: 'rtl', style: { textAlign: 'right' } }}
                 label='Arabic Name'
-                placeholder='Enter Office Arabic Name Here'
+                placeholder='أدخل اسم المكتب باللغة العربية هنا'
                 {...(errors.arabic_name && { error: true, helperText: 'This field is required.' })}
               />
             )}

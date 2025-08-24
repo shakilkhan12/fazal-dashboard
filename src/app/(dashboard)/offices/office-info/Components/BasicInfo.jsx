@@ -1,7 +1,23 @@
+'use client'
 import CustomTextField from '@/@core/components/mui/TextField'
 import { Button, Card, FormControlLabel, Grid2, IconButton, InputAdornment, Switch, Typography } from '@mui/material'
+import { Controller, useForm } from 'react-hook-form'
 
 const BasicInfo = () => {
+  // Hooks
+  const {
+    control,
+    reset: resetForm,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      officeId: '',
+      englishName: '',
+      arabicName: '',
+      location: ''
+    }
+  })
   return (
     <Card className='p-4'>
       <div className='flex items-center justify-between gap-4 mb-7'>
@@ -17,7 +33,33 @@ const BasicInfo = () => {
             <CustomTextField fullWidth label='English Name' type={'text'} placeholder='English Name' />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <CustomTextField fullWidth label='Arabic Name' type={'text'} placeholder='Arabic Name' />
+            <Controller
+              name='arabic_name'
+              control={control}
+              rules={{
+                required: true,
+                pattern: {
+                  value: /^[\u0600-\u06FF\s]+$/, // Only Arabic characters & spaces
+                  message: 'Only Arabic letters are allowed'
+                }
+              }}
+              render={({ field }) => (
+                <CustomTextField
+                  {...field}
+                  fullWidth
+                  onChange={e => {
+                    // Filter only Arabic characters while typing
+                    const value = e.target.value.replace(/[^\u0600-\u06FF\s]/g, '')
+                    field.onChange(value)
+                  }}
+                  inputProps={{ dir: 'rtl', style: { textAlign: 'right' } }}
+                  label='Arabic Name'
+                  placeholder='مكتب البلدية'
+                  {...(errors.arabic_name && { error: true, helperText: 'This field is required.' })}
+                />
+              )}
+            />
+            {/* <CustomTextField fullWidth label='Arabic Name' type={'text'} placeholder='مكتب البلدية' /> */}
           </Grid2>
           <CustomTextField
             fullWidth
