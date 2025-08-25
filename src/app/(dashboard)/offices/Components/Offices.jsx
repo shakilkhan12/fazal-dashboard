@@ -42,6 +42,7 @@ import { getLocalizedUrl } from '@/utils/i18n'
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
 import { Avatar, Button, Chip } from '@mui/material'
+import Image from 'next/image'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -99,15 +100,21 @@ const OfficeTable = ({ officeData }) => {
               <Typography
                 component={Link}
                 href={getLocalizedUrl('/', locale)}
-                className='font-medium hover:text-primary '
-                color='text.primary'
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.primary : '#2F2B3D8C'
+                })}
                 fontSize={13}
               >
                 {row.original.id}
               </Typography>
               <div className='flex items-center gap-2'>
                 {/* <CustomAvatar src={row.original.image} size={22} /> */}
-                <Typography variant='body2' color='text.primary'>
+                <Typography
+                  variant='body2'
+                  sx={theme => ({
+                    color: theme.palette.mode === 'dark' ? theme.palette.text.primary : '#2F2B3D8C'
+                  })}
+                >
                   {row.original.user}
                 </Typography>
               </div>
@@ -118,7 +125,13 @@ const OfficeTable = ({ officeData }) => {
       columnHelper.accessor('location', {
         header: 'Location',
         cell: ({ row }) => (
-          <Typography className='font-medium ' color='text.primary' fontSize={13}>
+          <Typography
+            className='font-medium '
+            fontSize={13}
+            sx={theme => ({
+              color: theme.palette.mode === 'dark' ? theme.palette.text.primary : '#2F2B3D8C'
+            })}
+          >
             {row.original.location}
           </Typography>
         ),
@@ -129,13 +142,19 @@ const OfficeTable = ({ officeData }) => {
 
         cell: ({ row }) => (
           <div className='flex items-center  gap-4'>
-            <img width={85} height={45} alt={row.original.image} src={`${row.original.image}`} />
+            <img width={95} height={52} alt={row.original.image} src={`${row.original.image}`} />
 
             <div className='flex flex-col'>
               <Typography color='text.primary' className='' fontSize={15}>
                 {row.original.name}
               </Typography>
-              <Chip variant='tonal' size='small' label={row.original.status} color='success' />
+              <Chip
+                sx={{ width: 59, height: 24 }}
+                variant='tonal'
+                size='small'
+                label={row.original.status}
+                color='success'
+              />
             </div>
           </div>
         )
@@ -143,35 +162,60 @@ const OfficeTable = ({ officeData }) => {
       columnHelper.accessor('cameras', {
         header: 'CAMERAS',
         cell: ({ row }) => (
-          <div className='flex items-center justify-between gap-5'>
+          <div className='flex items-center justify-between gap-5 max-w-[300px]'>
             <div>
               <div className='flex items-center gap-1.5'>
                 <CustomAvatar variant='rounded' skin='light' size={26} color='secondary'>
-                  <i className='tabler-device-computer-camera text-[18px]' />
+                  <Image src='./Office/device-cctv-indigo.svg' width={18} height={18} />
                 </CustomAvatar>
-                <Typography fontSize={15}>98</Typography>
+
+                <Typography fontSize={15} color='#2F2B3D · 90%'>
+                  98
+                </Typography>
               </div>
-              <Typography fontSize={13}>Total cameras</Typography>
+              <Typography
+                fontSize={13}
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D8C'
+                })}
+              >
+                Total cameras
+              </Typography>
             </div>
             <div>
               <div className='flex items-center gap-1.5'>
                 <CustomAvatar variant='rounded' skin='light' size={26} color='primary'>
-                  <i className='tabler-device-computer-camera text-lg' />
+                  {/* <i className='tabler-device-computer-camera text-lg' /> */}
+                  <Image src='/Office/device-cctv.png' width={18} height={18} />
                 </CustomAvatar>
                 <Typography fontSize={15}>98</Typography>
               </div>
-              <Typography fontSize={13}>Active cameras</Typography>
+              <Typography
+                fontSize={13}
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D8C'
+                })}
+              >
+                Active cameras
+              </Typography>
             </div>
             <div>
               <div className='flex items-center gap-1.5'>
                 <CustomAvatar variant='rounded' skin='light' size={26} color='error'>
-                  <i className='tabler-device-computer-camera text-lg' />
+                  <Image src='/Office/device-cctv-red.svg' width={18} height={18} />
                 </CustomAvatar>
                 <Typography fontSize={15} className=''>
                   98
                 </Typography>
               </div>
-              <Typography fontSize={13}>Inactive cameras</Typography>
+              <Typography
+                fontSize={13}
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D8C'
+                })}
+              >
+                Inactive cameras
+              </Typography>
             </div>
           </div>
         ),
@@ -182,7 +226,7 @@ const OfficeTable = ({ officeData }) => {
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
             <Link href={'/offices/office-info'}>
-              <Button variant='outlined' color='success' size='small'>
+              <Button variant='outlined' color='success' size='medium' sx={{ height: 38 }}>
                 Manage Office
               </Button>
             </Link>
@@ -226,14 +270,20 @@ const OfficeTable = ({ officeData }) => {
 
   return (
     <Card>
-      <CardHeader title='Office Listing' className='flex-wrap gap-4' />
+      <CardHeader title='Office Listing' className='flex-wrap gap-4 min-w-full' sx={{ width: 18, fontWeight: 500 }} />
       <div className='overflow-x-auto'>
         <table className={tableStyles.table}>
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <th key={header.id}>
+                {headerGroup.headers.map((header, index) => (
+                  <th
+                    key={header.id}
+                    // style={{
+                    //   borderRight: index !== headerGroup.headers.length - 1 ? '1px solid #e0e0e0' : 'none',
+                    //   padding: '8px'
+                    // }}
+                  >
                     {header.isPlaceholder ? null : (
                       <>
                         <div

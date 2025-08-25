@@ -2,12 +2,14 @@
 import { Button, Card, MenuItem, Typography } from '@mui/material'
 import LanguageInput from './LanguageInput'
 import SharedEditor from './SharedEditor'
+import CustomMuiButton from '@/@core/components/mui/CustomMuiButton'
+import ComponentTitle from './ComponentTitle'
 
 const PrivacyPolicy = () => {
   return (
     <Card className='p-4'>
       <div className='flex flex-wrap items-center justify-between gap-4 mb-7'>
-        <Typography className='text-base md:text-[22px] font-medium'>Privacy Policy</Typography>
+        <ComponentTitle>Privacy Policy</ComponentTitle>
         <LanguageInput />
       </div>
       <SharedEditor
@@ -15,7 +17,7 @@ const PrivacyPolicy = () => {
         placeholder='Write Terms & Conditions here...'
       />
       <div className='flex justify-end mt-5'>
-        <Button variant='contained'>Save Changes</Button>
+        <CustomMuiButton>Save Changes</CustomMuiButton>
       </div>
     </Card>
   )

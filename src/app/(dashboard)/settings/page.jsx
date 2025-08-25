@@ -18,10 +18,10 @@ const Settings = () => {
   })
   return (
     <Grid2 container spacing={6}>
-      <Grid2 size={{ xs: 12, lg: 4, md: 5 }}>
+      <Grid2 size={{ xs: 12, lg: 3, md: 4 }}>
         <CardView />
       </Grid2>
-      <Grid2 size={{ xs: 12, lg: 8, md: 7 }}>
+      <Grid2 size={{ xs: 12, lg: 9, md: 8 }}>
         <SettingsRight tabContentList={tabContentList([])} />
       </Grid2>
     </Grid2>

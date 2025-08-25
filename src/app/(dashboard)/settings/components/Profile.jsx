@@ -1,8 +1,9 @@
 'use client'
 import CustomTextField from '@/@core/components/mui/TextField'
-import { Card, Grid2, InputAdornment, MenuItem, Typography } from '@mui/material'
+import { Card, Grid2, IconButton, InputAdornment, MenuItem, Typography } from '@mui/material'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import ComponentTitle from './ComponentTitle'
 
 const Profile = () => {
   const [state, setState] = useState({
@@ -23,11 +24,25 @@ const Profile = () => {
   })
   return (
     <Card className='px-4 pt-5 pb-12'>
-      <Typography className='text-lg font-medium mb-7'>Profile Details</Typography>
-      <form>
+      <ComponentTitle className='text-lg font-medium mb-7'>Profile Details</ComponentTitle>
+      <form className='mt-5'>
         <Grid2 container spacing={4}>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <CustomTextField fullWidth label='Employee ID' type={'text'} placeholder='1234' disabled />
+            <CustomTextField
+              fullWidth
+              label='Employee ID'
+              type={'text'}
+              placeholder='1234'
+              disabled
+              sx={{
+                '& .MuiFilledInput-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 4 }}>
             <CustomTextField
@@ -37,16 +52,52 @@ const Profile = () => {
               label='Gender'
               value={state.gender}
               onChange={e => setState({ ...state, gender: e.target.value })}
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
             >
               <MenuItem value='male'>Male</MenuItem>
               <MenuItem value='female'>Female</MenuItem>
             </CustomTextField>
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 4 }}>
-            <CustomTextField fullWidth label='Role' type={'text'} placeholder='Admin' disabled />
+            <CustomTextField
+              fullWidth
+              label='Role'
+              type={'text'}
+              placeholder='Admin'
+              disabled
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='English Name' type={'text'} placeholder='Sheikh Abdullah' disabled />
+            <CustomTextField
+              fullWidth
+              label='English Name'
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              type={'text'}
+              placeholder='Sheikh Abdullah'
+              disabled
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <Controller
@@ -72,6 +123,14 @@ const Profile = () => {
                   inputProps={{ dir: 'rtl', style: { textAlign: 'right' } }}
                   label='Arabic Name'
                   placeholder='شیخ عبداللہ'
+                  sx={{
+                    '& .MuiInputBase-root.Mui-disabled': {
+                      backgroundColor: '#F9F9F9'
+                    },
+                    '& .MuiInputLabel-root.Mui-disabled': {
+                      color: '#2F2B3D' // change this to whatever label color you want
+                    }
+                  }}
                   {...(errors.arabic_name && { error: true, helperText: 'This field is required.' })}
                 />
               )}
@@ -79,13 +138,75 @@ const Profile = () => {
             {/* <CustomTextField fullWidth label='Arabic Name' type={'text'} placeholder='شیخ عبداللہ' disabled /> */}
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Phone' type='text' placeholder='456876766' disabled />
+            <CustomTextField
+              fullWidth
+              label='Phone'
+              type='text'
+              placeholder='456876766'
+              disabled
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Email' type={'email'} placeholder='abdullah@gmail.com ' disabled />
+            <CustomTextField
+              fullWidth
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              label='Email'
+              type={'email'}
+              placeholder='abdullah@gmail.com '
+              disabled
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Department English' type={'text'} placeholder='Irrigation' disabled />
+            <CustomTextField
+              fullWidth
+              label='Department English'
+              type={'text'}
+              placeholder='Irrigation'
+              disabled
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton edge='end' aria-label='toggle password visibility'>
+                        <i className={'tabler-chevron-down'} />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }
+              }}
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              // slotProps={{
+              //   input: {
+              //     startAdornment: (
+              //       <InputAdornment position='end'>
+              //         <i className='tabler-chevron-down' />
+              //       </InputAdornment>
+              //     )
+              //   }
+              // }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <Controller
@@ -101,6 +222,14 @@ const Profile = () => {
               }}
               render={({ field }) => (
                 <CustomTextField
+                  sx={{
+                    '& .MuiInputBase-root.Mui-disabled': {
+                      backgroundColor: '#F9F9F9'
+                    },
+                    '& .MuiInputLabel-root.Mui-disabled': {
+                      color: '#2F2B3D' // change this to whatever label color you want
+                    }
+                  }}
                   {...field}
                   fullWidth
                   onChange={e => {
@@ -126,7 +255,32 @@ const Profile = () => {
             />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Designation English' type={'text'} placeholder='Admin' disabled />
+            <CustomTextField
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              fullWidth
+              label='Designation English'
+              type={'text'}
+              placeholder='Admin'
+              disabled
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton edge='end' aria-label='toggle password visibility'>
+                        <i className={'tabler-chevron-down'} />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <Controller
@@ -142,6 +296,14 @@ const Profile = () => {
               }}
               render={({ field }) => (
                 <CustomTextField
+                  sx={{
+                    '& .MuiInputBase-root.Mui-disabled': {
+                      backgroundColor: '#F9F9F9'
+                    },
+                    '& .MuiInputLabel-root.Mui-disabled': {
+                      color: '#2F2B3D' // change this to whatever label color you want
+                    }
+                  }}
                   {...field}
                   fullWidth
                   onChange={e => {
@@ -167,7 +329,32 @@ const Profile = () => {
             />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Unit English' type={'text'} placeholder='Unit 1' disabled />
+            <CustomTextField
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              fullWidth
+              label='Unit English'
+              type={'text'}
+              placeholder='Unit 1'
+              disabled
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton edge='end' aria-label='toggle password visibility'>
+                        <i className={'tabler-chevron-down'} />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <Controller
@@ -183,6 +370,14 @@ const Profile = () => {
               }}
               render={({ field }) => (
                 <CustomTextField
+                  sx={{
+                    '& .MuiInputBase-root.Mui-disabled': {
+                      backgroundColor: '#F9F9F9'
+                    },
+                    '& .MuiInputLabel-root.Mui-disabled': {
+                      color: '#2F2B3D' // change this to whatever label color you want
+                    }
+                  }}
                   {...field}
                   fullWidth
                   onChange={e => {
@@ -208,7 +403,32 @@ const Profile = () => {
             />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
-            <CustomTextField fullWidth label='Committee English' type={'text'} placeholder='Central' disabled />
+            <CustomTextField
+              sx={{
+                '& .MuiInputBase-root.Mui-disabled': {
+                  backgroundColor: '#F9F9F9'
+                },
+                '& .MuiInputLabel-root.Mui-disabled': {
+                  color: '#2F2B3D' // change this to whatever label color you want
+                }
+              }}
+              fullWidth
+              label='Committee English'
+              type={'text'}
+              placeholder='Central'
+              disabled
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton edge='end' aria-label='toggle password visibility'>
+                        <i className={'tabler-chevron-down'} />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }
+              }}
+            />
           </Grid2>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <Controller
@@ -224,6 +444,14 @@ const Profile = () => {
               }}
               render={({ field }) => (
                 <CustomTextField
+                  sx={{
+                    '& .MuiInputBase-root.Mui-disabled': {
+                      backgroundColor: '#F9F9F9'
+                    },
+                    '& .MuiInputLabel-root.Mui-disabled': {
+                      color: '#2F2B3D' // change this to whatever label color you want
+                    }
+                  }}
                   {...field}
                   fullWidth
                   onChange={e => {

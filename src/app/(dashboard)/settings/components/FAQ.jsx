@@ -4,6 +4,8 @@ import { Button, Card, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import LanguageInput from './LanguageInput'
 import CustomIconButton from '@/@core/components/mui/IconButton'
+import ComponentTitle from './ComponentTitle'
+import CustomMuiButton from '@/@core/components/mui/CustomMuiButton'
 
 const FAQ = () => {
   const [faqs, setFaqs] = useState([{ question: '', answer: '' }])
@@ -35,13 +37,11 @@ const FAQ = () => {
   return (
     <Card className='p-4'>
       <div className='flex flex-wrap items-center justify-between gap-4 mb-7'>
-        <Typography className='text-base md:text-[22px] font-medium'>Frequently Asked Questions</Typography>
+        <ComponentTitle>Frequently Asked Questions</ComponentTitle>
         <LanguageInput />
       </div>
       <div className='flex justify-end my-5'>
-        <Button variant='contained' onClick={addFAQ}>
-          Add Question
-        </Button>
+        <CustomMuiButton onClick={addFAQ}>Add Question</CustomMuiButton>
       </div>
       {faqs.map((faq, index) => (
         <div key={index} className='mb-6 border p-3 rounded-md relative'>
@@ -80,7 +80,7 @@ const FAQ = () => {
       ))}
 
       <div className='flex gap-3 justify-end'>
-        <Button variant='contained'>Save Changes</Button>
+        <CustomMuiButton>Save Changes</CustomMuiButton>
       </div>
     </Card>
   )

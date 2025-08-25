@@ -2,20 +2,16 @@
 import { Button } from '@mui/material'
 import { useState } from 'react'
 import AddCameraDrawer from './AddCameraDrawer'
+import IconBtn from '@/@core/components/mui/IconBtn'
 
 const AddCamera = () => {
   const [addCameraOpen, setAddCameraOpen] = useState(false)
   const [data, setData] = useState([])
   return (
     <div className='flex justify-end mb-5'>
-      <Button
-        variant='contained'
-        className='max-sm:is-full text-white'
-        onClick={() => setAddCameraOpen(!addCameraOpen)}
-        startIcon={<i className='tabler-plus' />}
-      >
+      <IconBtn onClick={() => setAddCameraOpen(!addCameraOpen)} icon={<i className='tabler-plus' />}>
         Add Camera
-      </Button>
+      </IconBtn>
       <AddCameraDrawer
         open={addCameraOpen}
         officeData={data}

@@ -43,6 +43,8 @@ import { getLocalizedUrl } from '@/utils/i18n'
 import tableStyles from '@core/styles/table.module.css'
 import { Avatar, Button, Chip } from '@mui/material'
 import AddCamera from './AddCamera'
+import Image from 'next/image'
+import ComponentTitle from './ComponentTitle'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -97,7 +99,7 @@ const CamerasTable = ({ cameras }) => {
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <div className='flex items-center gap-2'>
-              <i className='tabler-device-computer-camera text-primary text-lg' />
+              <Image src='/Office/device-cctv.png' width={18} height={18} />
               <Typography className='font-medium hover:text-primary ' color='text.primary' fontSize={15}>
                 {row.original.name}
               </Typography>
@@ -144,7 +146,7 @@ const CamerasTable = ({ cameras }) => {
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
             <Link href='/offices/office-info'>
-              <Button variant='outlined' color='success' size='small'>
+              <Button variant='outlined' color='success' size='small' sx={{ height: 38, width: 97 }}>
                 Manage
               </Button>
             </Link>
@@ -189,12 +191,11 @@ const CamerasTable = ({ cameras }) => {
   return (
     <Card>
       <CardHeader className='flex-wrap' />
-      <div className='mb-7 flex items-center justify-between gap-4 px-4'>
-        <Typography size={18} className=''>
-          Cameras
-        </Typography>
+      <div className='mb-5 -mt-6 flex items-center justify-between gap-x-3 px-4'>
+        <ComponentTitle>Cameras</ComponentTitle>
         <AddCamera />
       </div>
+
       <div className='overflow-x-auto'>
         <table className={tableStyles.table}>
           <thead>

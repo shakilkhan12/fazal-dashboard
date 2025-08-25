@@ -1,11 +1,14 @@
+'use client'
 import CustomTextField from '@/@core/components/mui/TextField'
 import { Button, Card, Grid2, Typography } from '@mui/material'
+import ComponentTitle from './ComponentTitle'
+import IconBtn from '@/@core/components/mui/IconBtn'
 
 const Settings = () => {
   return (
     <Card className='p-4'>
-      <Typography className='text-lg font-medium mb-7'>Settings </Typography>
-      <form>
+      <ComponentTitle>Settings</ComponentTitle>
+      <form className='mt-5'>
         <Grid2 container spacing={4}>
           <Grid2 size={{ xs: 12, sm: 6 }}>
             <CustomTextField fullWidth label='Stream URL' type={'text'} placeholder='Stram URL' />
@@ -20,13 +23,7 @@ const Settings = () => {
             <CustomTextField fullWidth label='Password' type={'password'} placeholder='Password' />
           </Grid2>
           <Grid2 size={{ xs: 12 }} className='flex gap-4'>
-            <Button
-              variant='contained'
-              className='max-sm:is-full text-white'
-              startIcon={<i className='tabler-refresh' />}
-            >
-              Update
-            </Button>
+            <IconBtn icon={<i className='tabler-refresh' />}>Update</IconBtn>
           </Grid2>
         </Grid2>
       </form>

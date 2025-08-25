@@ -1,5 +1,6 @@
 import CustomAvatar from '@/@core/components/mui/Avatar'
 import { Card, CardContent, Chip, Typography } from '@mui/material'
+import Image from 'next/image'
 
 const CardView = () => {
   return (
@@ -9,12 +10,7 @@ const CardView = () => {
           <div className='flex items-center justify-center  flex-col gap-4'>
             <div className='flex flex-col items-center  gap-4'>
               <div className='relative'>
-                <CustomAvatar
-                  alt='user-profile'
-                  src='/images/avatars/1.png'
-                  className='border-[3px] border-primary rounded-full'
-                  size={100}
-                />
+                <Image alt='user-profile' src='/Profile/avatar.png' width={100} height={100} />
               </div>
               <Typography className='text-lg font-medium '>Ahmad Ayaz Noor</Typography>
               <div className='border-t w-full pt-3'>

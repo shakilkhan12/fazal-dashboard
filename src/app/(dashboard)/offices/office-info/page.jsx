@@ -9,6 +9,7 @@ import cameraData from './data'
 import Functionalities from './Components/Functionalities'
 import Settings from './Components/Settings'
 import Link from 'next/link'
+import IconBtn from '@/@core/components/mui/IconBtn'
 
 const OfficeInfo = () => {
   // Vars
@@ -23,13 +24,7 @@ const OfficeInfo = () => {
       <div className='flex items-center justify-between gap-4 mb-5'>
         <Typography className='text-lg font-medium'>Municipality Office - مكتب البلدية</Typography>
         <Link href='/offices'>
-          <Button
-            variant='contained'
-            className='max-sm:is-full text-white'
-            startIcon={<i className='tabler-chevron-left' />}
-          >
-            Back
-          </Button>
+          <IconBtn icon={<i className='tabler-chevron-left' />}>Back</IconBtn>
         </Link>
       </div>
       <Grid container spacing={6}>

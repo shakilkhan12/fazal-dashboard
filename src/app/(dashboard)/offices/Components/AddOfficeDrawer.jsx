@@ -15,6 +15,7 @@ import { useForm, Controller } from 'react-hook-form'
 
 // Components Imports
 import CustomTextField from '@core/components/mui/TextField'
+import IconBtn from '@/@core/components/mui/IconBtn'
 
 const AddOfficeDrawer = props => {
   // Props
@@ -183,9 +184,7 @@ const AddOfficeDrawer = props => {
             }}
           ></CustomTextField>
           <div className='flex items-center gap-4'>
-            <Button variant='contained' className='max-sm:is-full text-white' startIcon={<i className='tabler-plus' />}>
-              Add Office
-            </Button>
+            <IconBtn icon={<i className='tabler-plus' />}>Add Office</IconBtn>
             <Button variant='tonal' color='error' type='reset' onClick={handleReset}>
               Cancel
             </Button>

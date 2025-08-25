@@ -41,6 +41,7 @@ const SettingsRight = ({ tabContentList }) => {
                   }
                 },
                 '& .Mui-selected': {
+                  background: 'linear-gradient(270deg, rgba(43, 182, 115, 0.70) 0%, #2BB673 100%)',
                   // Selected tab
                   color: 'white !important',
                   '& i': {

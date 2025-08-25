@@ -34,6 +34,8 @@ import CustomTextField from '@core/components/mui/TextField'
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
 import { FormControlLabel, Switch } from '@mui/material'
+import ComponentTitle from './ComponentTitle'
+import Image from 'next/image'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -106,7 +108,7 @@ const Functionalities = () => {
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <div className='flex items-center gap-2'>
-              <i className='tabler-device-computer-camera text-primary text-lg' />
+              <Image src='/Office/device-cctv.png' width={18} height={18} alt='Icon' />
               <Typography className='font-medium hover:text-primary ' color='text.primary' fontSize={15}>
                 {row.original.camera}
               </Typography>
@@ -177,10 +179,8 @@ const Functionalities = () => {
   return (
     <Card>
       <CardHeader className='flex-wrap' />
-      <div className='mb-7 flex items-center justify-between gap-4 px-4'>
-        <Typography size={18} className=''>
-          Functionalities
-        </Typography>
+      <div className='mb-7 -mt-6 flex items-center justify-between gap-4 px-4'>
+        <ComponentTitle>Functionalities</ComponentTitle>
       </div>
       <div className='overflow-x-auto'>
         <table className={tableStyles.table}>

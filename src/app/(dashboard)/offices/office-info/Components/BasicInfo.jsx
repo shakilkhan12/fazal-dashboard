@@ -1,7 +1,9 @@
 'use client'
+import IconBtn from '@/@core/components/mui/IconBtn'
 import CustomTextField from '@/@core/components/mui/TextField'
 import { Button, Card, FormControlLabel, Grid2, IconButton, InputAdornment, Switch, Typography } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
+import ComponentTitle from './ComponentTitle'
 
 const BasicInfo = () => {
   // Hooks
@@ -21,7 +23,7 @@ const BasicInfo = () => {
   return (
     <Card className='p-4'>
       <div className='flex items-center justify-between gap-4 mb-7'>
-        <Typography className='text-lg font-medium '>Basic Information المعلومات الأساسية</Typography>
+        <ComponentTitle>Basic Information المعلومات الأساسية</ComponentTitle>
         <FormControlLabel labelPlacement='start' control={<Switch defaultChecked />} label='Status' />
       </div>
       <form>
@@ -79,13 +81,7 @@ const BasicInfo = () => {
             }}
           />
           <Grid2 size={{ xs: 12 }} className='flex gap-4'>
-            <Button
-              variant='contained'
-              className='max-sm:is-full text-white'
-              startIcon={<i className='tabler-refresh' />}
-            >
-              Update
-            </Button>
+            <IconBtn icon={<i className='tabler-refresh' />}>Update</IconBtn>
           </Grid2>
         </Grid2>
       </form>

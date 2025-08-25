@@ -29,8 +29,6 @@ const OfficeRight = ({ tabContentList }) => {
               pill='true'
               sx={theme => ({
                 '& .MuiTab-root': {
-                  // Light mode default
-                  // color: theme.palette.mode === 'light' ? '#29B171' : 'white',
                   '& i': {
                     color: theme.palette.mode === 'light' ? '#29B171' : 'white'
                   },
@@ -41,7 +39,7 @@ const OfficeRight = ({ tabContentList }) => {
                   }
                 },
                 '& .Mui-selected': {
-                  // Selected tab
+                  background: 'linear-gradient(270deg, rgba(43, 182, 115, 0.70) 0%, #2BB673 100%)',
                   color: 'white !important',
                   '& i': {
                     color: 'white !important'

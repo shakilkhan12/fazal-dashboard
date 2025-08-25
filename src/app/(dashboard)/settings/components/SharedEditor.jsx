@@ -2,8 +2,14 @@
 
 // MUI Imports
 import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid2'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
 
-// Third-party imports
+// Third-party Imports
+import classnames from 'classnames'
 import { useEditor, EditorContent } from '@tiptap/react'
 import { StarterKit } from '@tiptap/starter-kit'
 import { Underline } from '@tiptap/extension-underline'
@@ -16,76 +22,93 @@ import { ListItem } from '@tiptap/extension-list-item'
 // Components Imports
 import CustomIconButton from '@core/components/mui/IconButton'
 
+// Style Imports
+import '@core/styles/tiptap.css'
+
 const EditorToolbar = ({ editor }) => {
   if (!editor) {
     return null
   }
 
   return (
-    <div className='flex flex-wrap gap-x-3 gap-y-1 p-6'>
+    <div className='flex flex-wrap gap-x-3 gap-y-1 pbs-6 pbe-4 pli-6'>
       <CustomIconButton
         {...(editor.isActive('bold') && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().toggleBold().run()}
       >
-        <i className='tabler-bold' />
+        <i className={classnames('tabler-bold', { 'text-textSecondary': !editor.isActive('bold') })} />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive('underline') && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().toggleUnderline().run()}
       >
-        <i className='tabler-underline' />
+        <i className={classnames('tabler-underline', { 'text-textSecondary': !editor.isActive('underline') })} />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive('italic') && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().toggleItalic().run()}
       >
-        <i className='tabler-italic' />
+        <i className={classnames('tabler-italic', { 'text-textSecondary': !editor.isActive('italic') })} />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive('strike') && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().toggleStrike().run()}
       >
-        <i className='tabler-strikethrough' />
+        <i className={classnames('tabler-strikethrough', { 'text-textSecondary': !editor.isActive('strike') })} />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive({ textAlign: 'left' }) && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().setTextAlign('left').run()}
       >
-        <i className='tabler-align-left' />
+        <i
+          className={classnames('tabler-align-left', { 'text-textSecondary': !editor.isActive({ textAlign: 'left' }) })}
+        />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive({ textAlign: 'center' }) && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().setTextAlign('center').run()}
       >
-        <i className='tabler-align-center' />
+        <i
+          className={classnames('tabler-align-center', {
+            'text-textSecondary': !editor.isActive({ textAlign: 'center' })
+          })}
+        />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive({ textAlign: 'right' }) && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().setTextAlign('right').run()}
       >
-        <i className='tabler-align-right' />
+        <i
+          className={classnames('tabler-align-right', {
+            'text-textSecondary': !editor.isActive({ textAlign: 'right' })
+          })}
+        />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive({ textAlign: 'justify' }) && { color: 'primary' })}
-        variant='outlined'
+        variant='tonal'
         size='small'
         onClick={() => editor.chain().focus().setTextAlign('justify').run()}
       >
-        <i className='tabler-align-justified' />
+        <i
+          className={classnames('tabler-align-justified', {
+            'text-textSecondary': !editor.isActive({ textAlign: 'justify' })
+          })}
+        />
       </CustomIconButton>
       <CustomIconButton
         {...(editor.isActive('bulletList') && { color: 'primary' })}
@@ -108,7 +131,7 @@ const EditorToolbar = ({ editor }) => {
   )
 }
 
-const SharedEditor = ({ content }) => {
+const SharedEditor = () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -123,28 +146,22 @@ const SharedEditor = ({ content }) => {
       OrderedList,
       ListItem
     ],
-
-    content:
-      content !== null && content !== void 0
-        ? content
-        : `
+    immediatelyRender: false,
+    content: `
       <p>
-        This is a radically reduced version of tiptap. It has support for a document, with paragraphs and text. That's it. It's probably too much for real minimalists though.
+        Keep your account secure with authentication step.
       </p>
-      <br />
-      <p>
-        The paragraph extension is not really required, but you need at least one node. Sure, that node can be something different.
-      </p>
-    `,
-    immediatelyRender: false // ✅ Fix hydration issue
+    `
   })
 
   return (
-    <div className='border rounded-md'>
-      <EditorToolbar editor={editor} />
-      <Divider />
-      <EditorContent editor={editor} className='bs-[200px] overflow-y-auto flex p-8' />
-    </div>
+    <>
+      <div className='p-0'>
+        <EditorToolbar editor={editor} />
+        <Divider className='mli-6' />
+        <EditorContent editor={editor} className='bs-[135px] overflow-y-auto flex ' />
+      </div>
+    </>
   )
 }
 
