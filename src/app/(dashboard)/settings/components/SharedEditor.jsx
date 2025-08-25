@@ -156,7 +156,7 @@ const SharedEditor = () => {
 
   return (
     <>
-      <div className='p-0'>
+      <div className='p-0 !border rounded'>
         <EditorToolbar editor={editor} />
         <Divider className='mli-6' />
         <EditorContent editor={editor} className='bs-[135px] overflow-y-auto flex ' />
