@@ -6,7 +6,7 @@ import React from 'react'
 
 // 🎨 Create a styled gradient button
 const GradientButton = styled(props => <Button {...props} />)(({ theme }) => ({
-  background: 'linear-gradient(270deg, rgba(43, 182, 115, 0.70) 0%, #2BB673 100%)',
+  background: 'linear-gradient(270deg, #2BB673B2 0%, #2BB673 100%)',
   color: '#fff',
   textTransform: 'none',
   height: '38px',

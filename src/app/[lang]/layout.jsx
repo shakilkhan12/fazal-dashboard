@@ -23,6 +23,7 @@ import '@/app/globals.css'
 
 // Generated Icon CSS Imports
 import '@assets/iconify-icons/generated-icons.css'
+import GlobalWrapper from './GlobalWrapper'
 
 export const metadata = {
   title: 'Vuexy - MUI Next.js Admin Dashboard Template',
@@ -44,7 +45,7 @@ const RootLayout = async props => {
       <html id='__next' lang={params.lang} dir={direction} suppressHydrationWarning>
         <body className='flex is-full min-bs-full flex-auto flex-col'>
           <InitColorSchemeScript attribute='data' defaultMode={systemMode} />
-          {children}
+          <GlobalWrapper>{children}</GlobalWrapper>
         </body>
       </html>
     </TranslationWrapper>
