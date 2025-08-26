@@ -80,7 +80,7 @@ const BasicInfo = () => {
               }
             }}
           />
-          <Grid2 size={{ xs: 12 }} className='flex gap-4'>
+          <Grid2 size={{ xs: 12 }} className='flex gap-4 justify-end'>
             <IconBtn icon={<i className='tabler-refresh' />}>Update</IconBtn>
           </Grid2>
         </Grid2>

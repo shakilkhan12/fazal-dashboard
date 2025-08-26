@@ -9,14 +9,17 @@ import Grid from '@mui/material/Grid2'
 // Component Imports
 import CustomTabList from '@core/components/mui/TabList'
 import { useState } from 'react'
+import { useTheme } from '@mui/material'
+import Image from 'next/image'
 
-const OfficeRight = ({ tabContentList }) => {
+const ParkRight = ({ tabContentList }) => {
   // States
   const [activeTab, setActiveTab] = useState('basic')
-
+  const theme = useTheme()
   const handleChange = (event, value) => {
     setActiveTab(value)
   }
+  console.log(activeTab)
 
   return (
     <>
@@ -49,7 +52,13 @@ const OfficeRight = ({ tabContentList }) => {
             >
               <Tab icon={<i className='tabler-leaf' />} value='basic' label='Basic Info' iconPosition='start' />
               <Tab
-                icon={<i className='tabler-device-computer-camera' />}
+                icon={
+                  activeTab === 'zones' ? (
+                    <Image src='/park/zone-white.svg' width={18} height={18} alt='zone' />
+                  ) : (
+                    <Image src='/park/zone-green.svg' width={18} height={18} alt='zone' />
+                  )
+                }
                 value='zones'
                 label='Zones'
                 iconPosition='start'
@@ -80,4 +89,4 @@ const OfficeRight = ({ tabContentList }) => {
   )
 }
 
-export default OfficeRight
+export default ParkRight

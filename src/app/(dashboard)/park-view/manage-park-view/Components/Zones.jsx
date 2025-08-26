@@ -3,11 +3,15 @@
 // React Imports
 import { useState, useEffect, useMemo } from 'react'
 
+// Next Imports
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
+import Checkbox from '@mui/material/Checkbox'
+import LinearProgress from '@mui/material/LinearProgress'
 import TablePagination from '@mui/material/TablePagination'
 import Typography from '@mui/material/Typography'
 
@@ -28,14 +32,20 @@ import {
 } from '@tanstack/react-table'
 
 // Components Imports
+import CustomAvatar from '@core/components/mui/Avatar'
 import TablePaginationComponent from '@components/TablePaginationComponent'
 import CustomTextField from '@core/components/mui/TextField'
 
+// Util Imports
+import { getLocalizedUrl } from '@/utils/i18n'
+
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
-import { FormControlLabel, Switch } from '@mui/material'
-import ComponentTitle from './ComponentTitle'
+import { Avatar, Button, Chip } from '@mui/material'
+import AddCamera from './AddZone'
 import Image from 'next/image'
+import ComponentTitle from './ComponentTitle'
+import AddZone from './AddZone'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -72,73 +82,11 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const Functionalities = () => {
-  const functionalities = [
-    {
-      camera: 'Frontdoor camera (CAM-001)',
-      ai_models: {
-        id: 1,
-        attendence: 'attendance',
-        footfall: 'footfall analysis',
-        sentiment: 'sentiment analysis',
-        behavior: 'behavior alerts',
-        irregation: 'irregation',
-        landscapping: 'landscapping',
-        litter: 'litter detection',
-        intrusion: 'instrusion detection',
-        smooking: 'smooking detection'
-      }
-    },
-    {
-      camera: 'Frontdoor camera (CAM-001)',
-      ai_models: {
-        id: 1,
-        attendence: 'attendance',
-        footfall: 'footfall analysis',
-        sentiment: 'sentiment analysis',
-        behavior: 'behavior alerts',
-        irregation: 'irregation',
-        landscapping: 'landscapping',
-        litter: 'litter detection',
-        intrusion: 'instrusion detection',
-        smooking: 'smooking detection'
-      }
-    },
-    {
-      camera: 'Frontdoor camera (CAM-001)',
-      ai_models: {
-        id: 1,
-        attendence: 'attendance',
-        footfall: 'footfall analysis',
-        sentiment: 'sentiment analysis',
-        behavior: 'behavior alerts',
-        irregation: 'irregation',
-        landscapping: 'landscapping',
-        litter: 'litter detection',
-        intrusion: 'instrusion detection',
-        smooking: 'smooking detection'
-      }
-    },
-    {
-      camera: 'Frontdoor camera (CAM-001)',
-      ai_models: {
-        id: 1,
-        attendence: 'attendance',
-        footfall: 'footfall analysis',
-        sentiment: 'sentiment analysis',
-        behavior: 'behavior alerts',
-        irregation: 'irregation',
-        landscapping: 'landscapping',
-        litter: 'litter detection',
-        intrusion: 'instrusion detection',
-        smooking: 'smooking detection'
-      }
-    }
-  ]
+const Zones = ({ zones }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
-  const [data, setData] = useState(...[functionalities])
+  const [data, setData] = useState(...[zones])
   const [globalFilter, setGlobalFilter] = useState('')
 
   // Hooks
@@ -147,83 +95,108 @@ const Functionalities = () => {
 
   const columns = useMemo(
     () => [
-      columnHelper.accessor('camera', {
-        header: 'CAMERA',
+      columnHelper.accessor('id', {
+        header: 'ID',
         cell: ({ row }) => (
-          <div className='flex items-center gap-4'>
-            <div className='flex items-center gap-2'>
+          <Typography className='font-medium hover:text-primary ' color='text.primary' fontSize={15}>
+            {row.original.id}
+          </Typography>
+        )
+      }),
+      columnHelper.accessor('name', {
+        header: 'NAME',
+        cell: ({ row }) => (
+          <>
+            <Typography
+              className=''
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#444050'
+              })}
+              fontSize={15}
+            >
+              {row.original.name}
+            </Typography>
+            <Typography
+              className=''
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#444050B2'
+              })}
+              fontSize={13}
+            >
+              {row.original.ip}
+            </Typography>
+          </>
+        )
+      }),
+      columnHelper.accessor('status', {
+        header: 'STATUS',
+        cell: ({ row }) => (
+          <div className='flex items-center gap-3'>
+            <span
+              className={`flex w-[10px] h-[10px] rounded-full ${row.original.status === 'active' ? 'bg-primary' : 'bg-rose-600'}`}
+            ></span>
+            <div>
               <Typography
-                color='text.primary'
-                className='max-w-[97px] text-wrap'
-                fontSize={15}
+                className='font-light capitalize '
                 sx={theme => ({
-                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#444050'
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#444050B2'
+                })}
+                fontSize={13}
+              >
+                {row.original.status} Since
+              </Typography>
+              <Typography
+                size={15}
+                className=''
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
                 })}
               >
-                {row.original.camera}
+                {row.original.date}
               </Typography>
             </div>
           </div>
+        ),
+        enableSorting: false
+      }),
+      columnHelper.accessor('date_added', {
+        header: 'DATE ADDED',
+
+        cell: ({ row }) => (
+          <div>
+            <Typography
+              color='text.primary'
+              className=''
+              fontSize={13}
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
+              })}
+            >
+              {row.original.addedDate}
+            </Typography>
+            <Typography
+              color='text.primary'
+              className=''
+              fontSize={13}
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
+              })}
+            >
+              {row.original.addedTime}
+            </Typography>
+          </div>
         )
       }),
-      columnHelper.accessor('ai_models', {
-        header: 'AI MODELS',
+
+      columnHelper.accessor('action', {
+        header: 'ACTION',
         cell: ({ row }) => (
-          <div className='grid grid-cols-3 items-center gap-2'>
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.attendence}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.footfall}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.sentiment}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.behavior}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.irregation}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.landscapping}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.litter}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.intrusion}
-              className='flex items-center capitalize text-[15px]'
-            />
-            <FormControlLabel
-              labelPlacement='end'
-              control={<Switch defaultChecked />}
-              label={row.original.ai_models.smooking}
-              className='flex items-center capitalize text-[15px]'
-            />
+          <div className='flex items-center justify-between gap-5'>
+            <Link href='/offices/office-info'>
+              <Button variant='outlined' color='success' size='small' sx={{ height: 38, width: 97 }}>
+                Manage
+              </Button>
+            </Link>
           </div>
         ),
         enableSorting: false
@@ -245,7 +218,7 @@ const Functionalities = () => {
     },
     initialState: {
       pagination: {
-        pageSize: 5
+        pageSize: 9
       }
     },
     enableRowSelection: true, //enable row selection for all rows
@@ -265,9 +238,11 @@ const Functionalities = () => {
   return (
     <Card>
       <CardHeader className='flex-wrap' />
-      <div className='mb-7 -mt-6 flex items-center justify-between gap-4 px-4'>
-        <ComponentTitle>Functionalities</ComponentTitle>
+      <div className='mb-5 -mt-7 flex items-start justify-between gap-x-3 px-4 '>
+        <ComponentTitle>Zones</ComponentTitle>
+        <AddZone />
       </div>
+
       <div className='overflow-x-auto'>
         <table className={tableStyles.table}>
           <thead>
@@ -336,4 +311,4 @@ const Functionalities = () => {
   )
 }
 
-export default Functionalities
+export default Zones

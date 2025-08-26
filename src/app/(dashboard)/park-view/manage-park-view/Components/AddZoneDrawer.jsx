@@ -16,8 +16,9 @@ import { useForm, Controller } from 'react-hook-form'
 // Components Imports
 import CustomTextField from '@core/components/mui/TextField'
 import { FormControlLabel, Switch } from '@mui/material'
+import Image from 'next/image'
 
-const AddCameraDrawer = props => {
+const AddZoneDrawer = props => {
   // Props
   const { open, handleClose, cameraData, setData } = props
 
@@ -78,7 +79,7 @@ const AddCameraDrawer = props => {
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 400 }, borderLeft: '3.5px solid #2BB673B2' } }}
     >
       <div className='flex items-center justify-between pli-6 plb-5 '>
-        <Typography variant='h5'>Add New Camera</Typography>
+        <Typography variant='h5'>Add New Zone</Typography>
         <div className='flex items-center justify-center bg-primary rounded-sm cursor-pointer' onClick={handleReset}>
           <i className='tabler-x text-textSecondary text-xl text-white' />
         </div>
@@ -94,8 +95,8 @@ const AddCameraDrawer = props => {
               <CustomTextField
                 {...field}
                 fullWidth
-                label='Camera ID'
-                placeholder='SFI-4533'
+                label='Zone ID'
+                placeholder='Enter ID Here'
                 {...(errors.id && { error: true, helperText: 'This field is required.' })}
               />
             )}
@@ -108,8 +109,8 @@ const AddCameraDrawer = props => {
               <CustomTextField
                 {...field}
                 fullWidth
-                label='Camera Name English'
-                placeholder='Enter Camera English Name Here'
+                label='Camera English Name'
+                placeholder='Enter English Name Here'
                 {...(errors.name && { error: true, helperText: 'This field is required.' })}
               />
             )}
@@ -134,12 +135,42 @@ const AddCameraDrawer = props => {
                 }}
                 inputProps={{ dir: 'rtl', style: { textAlign: 'right' } }}
                 fullWidth
-                label='Camera Name Arabic'
+                label='Arabic Name'
                 placeholder='اے بی وای-داخلی راستہ'
                 {...(errors.arabic_name && { error: true, helperText: 'This field is required.' })}
               />
             )}
           />
+          <div className='grid grid-cols-2 items-center gap-4'>
+            <Controller
+              name='ip'
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <CustomTextField
+                  {...field}
+                  fullWidth
+                  label='Latitude'
+                  placeholder='Enter Latitude'
+                  {...(errors.latitude && { error: true, helperText: 'This field is required.' })}
+                />
+              )}
+            />
+            <Controller
+              name='ip'
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <CustomTextField
+                  {...field}
+                  fullWidth
+                  label='Longitude'
+                  placeholder='Enter Longitude'
+                  {...(errors.longitude && { error: true, helperText: 'This field is required.' })}
+                />
+              )}
+            />
+          </div>
           <Controller
             name='ip'
             control={control}
@@ -148,44 +179,36 @@ const AddCameraDrawer = props => {
               <CustomTextField
                 {...field}
                 fullWidth
-                label='IP Address'
-                placeholder='192.0.0.1'
-                {...(errors.ip && { error: true, helperText: 'This field is required.' })}
+                label='Device IP'
+                placeholder='Enter Hardware IP Here'
+                {...(errors.longitude && { error: true, helperText: 'This field is required.' })}
               />
             )}
           />
-
-          <CustomTextField
-            fullWidth
-            label='Location'
-            value={status}
-            disabled
-            placeholder='Enter Location Here'
-            onChange={e => setStatus(e.target.value)}
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <IconButton edge='end'>
-                      <i className={'tabler-map-pin'} />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }
-            }}
-          ></CustomTextField>
-          <div className='flex justify-start pl-2'>
-            <FormControlLabel labelPlacement='start' control={<Switch defaultChecked />} label='Status' />
-          </div>
-          <div className='flex items-center gap-3'>
-            <span className=' text-[15px]'>Last active</span>
-            <span className={`flex w-[10px] h-[10px] rounded-full bg-gray-400`}></span>
-            <span className=' text-[15px]'>12 July 2025 at 10:25 PM</span>
-            <i className='tabler-reload text-[15px] cursor-pointer'></i>
-          </div>
+          <Controller
+            name='web_api'
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <CustomTextField
+                {...field}
+                fullWidth
+                label='Web API'
+                placeholder='Enter Web API Here'
+                {...(errors.webapi && { error: true, helperText: 'This field is required.' })}
+              />
+            )}
+          />
           <div className='flex items-center gap-4'>
-            <Button variant='contained' className='max-sm:is-full text-white' startIcon={<i className='tabler-plus' />}>
-              Add Camera
+            <Button
+              variant='contained'
+              className='max-sm:is-full text-white'
+              startIcon={<Image src='/link.svg' width={20} height={20} alt='connect' />}
+            >
+              Connect
+            </Button>
+            <Button variant='tonal' color='error'>
+              Cancel
             </Button>
           </div>
         </form>
@@ -194,4 +217,4 @@ const AddCameraDrawer = props => {
   )
 }
 
-export default AddCameraDrawer
+export default AddZoneDrawer

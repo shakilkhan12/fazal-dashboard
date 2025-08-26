@@ -10,8 +10,6 @@ import { useParams } from 'next/navigation'
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
-import Checkbox from '@mui/material/Checkbox'
-import LinearProgress from '@mui/material/LinearProgress'
 import TablePagination from '@mui/material/TablePagination'
 import Typography from '@mui/material/Typography'
 
@@ -115,10 +113,23 @@ const CamerasTable = ({ cameras }) => {
               className={`flex w-[10px] h-[10px] rounded-full ${row.original.status === 'active' ? 'bg-primary' : 'bg-rose-600'}`}
             ></span>
             <div>
-              <Typography className='font-medium capitalize ' color='text.primary' fontSize={13}>
+              <Typography
+                className='font-medium capitalize '
+                color='text.primary'
+                fontSize={13}
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#444050B2'
+                })}
+              >
                 {row.original.status} Since
               </Typography>
-              <Typography size={15} className=''>
+              <Typography
+                size={15}
+                className=''
+                sx={theme => ({
+                  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
+                })}
+              >
                 {row.original.date}
               </Typography>
             </div>
@@ -131,10 +142,24 @@ const CamerasTable = ({ cameras }) => {
 
         cell: ({ row }) => (
           <div>
-            <Typography color='text.primary' className='' fontSize={13}>
+            <Typography
+              color='text.primary'
+              className=''
+              fontSize={13}
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
+              })}
+            >
               {row.original.addedDate}
             </Typography>
-            <Typography color='text.primary' className='' fontSize={13}>
+            <Typography
+              color='text.primary'
+              className=''
+              fontSize={13}
+              sx={theme => ({
+                color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : '#2F2B3D · 70%'
+              })}
+            >
               {row.original.addedTime}
             </Typography>
           </div>

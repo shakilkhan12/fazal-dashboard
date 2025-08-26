@@ -129,7 +129,7 @@ const Parks = ({ parkData }) => {
             className='font-medium '
             fontSize={13}
             sx={theme => ({
-              color: theme.palette.mode === 'dark' ? theme.palette.text.primary : '#2F2B3D8C'
+              color: theme.palette.mode === 'dark' ? theme.palette.text.primary : '#444050'
             })}
           >
             {row.original.location}
@@ -145,7 +145,11 @@ const Parks = ({ parkData }) => {
             <Image width={108} height={76} alt={row.original.image} src={`${row.original.image}`} />
 
             <div className='flex flex-col'>
-              <Typography color='text.primary' className='' fontSize={15}>
+              <Typography
+                color='text.primary'
+                className='font-medium max-w-[88px] leading-[22px] text-wrap mb-1'
+                fontSize={15}
+              >
                 {row.original.name}
               </Typography>
               <Chip
@@ -226,8 +230,13 @@ const Parks = ({ parkData }) => {
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
             <Link href={'/park-view/manage-park-view'}>
-              <Button variant='outlined' color='success' size='medium' sx={{ height: 38 }}>
-                Manage Office
+              <Button
+                variant='outlined'
+                color='success'
+                size='medium'
+                sx={{ height: 38, minWidth: 97, fontSize: 13, fontWeight: 400, lineHeight: 20 }}
+              >
+                Manage
               </Button>
             </Link>
           </div>
@@ -251,7 +260,7 @@ const Parks = ({ parkData }) => {
     },
     initialState: {
       pagination: {
-        pageSize: 5
+        pageSize: 9
       }
     },
     enableRowSelection: true, //enable row selection for all rows
@@ -270,7 +279,11 @@ const Parks = ({ parkData }) => {
 
   return (
     <Card>
-      <CardHeader title='Office Listing' className='flex-wrap gap-4 min-w-full' sx={{ width: 18, fontWeight: 500 }} />
+      <CardHeader
+        title='Park View Listing'
+        className='flex-wrap gap-4 min-w-full'
+        sx={{ width: 18, fontWeight: 500 }}
+      />
       <div className='overflow-x-auto'>
         <table className={tableStyles.table}>
           <thead>

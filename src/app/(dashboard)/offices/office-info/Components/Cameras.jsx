@@ -146,7 +146,12 @@ const CamerasTable = ({ cameras }) => {
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
             <Link href='/offices/office-info'>
-              <Button variant='outlined' color='success' size='small' sx={{ height: 38, width: 97 }}>
+              <Button
+                variant='outlined'
+                color='success'
+                size='small'
+                sx={{ height: 38, minWidth: 97, fontSize: 13, fontWeight: 400, lineHeight: 20 }}
+              >
                 Manage
               </Button>
             </Link>

@@ -226,7 +226,12 @@ const OfficeTable = ({ officeData }) => {
         cell: ({ row }) => (
           <div className='flex items-center justify-between gap-5'>
             <Link href={'/offices/office-info'}>
-              <Button variant='outlined' color='success' size='medium' sx={{ height: 38 }}>
+              <Button
+                variant='outlined'
+                color='success'
+                size='medium'
+                sx={{ height: 38, minWidth: 97, fontSize: 13, fontWeight: 400, lineHeight: 20 }}
+              >
                 Manage Office
               </Button>
             </Link>
